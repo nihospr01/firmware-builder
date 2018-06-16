@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+OS=$(uname)
+docker &> /dev/null
+NEED_DOCKER=$?
+
+if [ $NEED_DOCKER -ne 0 ]
+then
+  if [ $OS = "Darwin" ]
+  then
+    open https://store.docker.com/editions/community/docker-ce-desktop-mac
+    read -p "Install Docker for Mac and then press any key once installed and running..." -n1 -s && echo
+  else
+    echo "Install Docker and then run this script."
+    exit -1
+  fi
+fi
+
+docker build -t osp-builder .
+docker create -it -v $PWD/opt:/opt --name osp-builder -h osp-builder osp-builder
+
+exit 0

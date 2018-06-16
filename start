@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+exec docker start -i osp-builder
+
+echo "Failed to start \"osp-builder\" container"
+exit -1
