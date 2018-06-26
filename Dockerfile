@@ -21,9 +21,11 @@ RUN apt update && apt install -y \
   python \
   libfdt-dev \
   sudo \
+  libncurses5-dev \
+  dialog \
   android-tools-adb \
   android-tools-fastboot
-  
+
 ADD osp.sh /etc/profile.d/
 
 WORKDIR /opt/osp/var/build
