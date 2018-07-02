@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir -p $PWD/opt/osp/var/build
+
 OS=$(uname)
 docker &> /dev/null
 NEED_DOCKER=$?
