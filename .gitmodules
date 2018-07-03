@@ -4,4 +4,4 @@
 	branch = master
 [submodule "opt/osp/src/kernel"]
 	path = opt/osp/src/kernel
-	url = git@bitbucket.org:openspeechplatform/kernel.git
+	url = https://bitbucket.org/openspeechplatform/kernel.git
