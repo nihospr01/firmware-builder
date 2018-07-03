@@ -20,7 +20,7 @@ export CROSS_COMPILE
 buildKernel() {
   pushd $KERNEL_DIR
   if ! [ -f .config ]; then
-      make apq8016_defconfig KERNELRELEASE=4.9.56-linaro-lt-qcom
+      make ospboard_defconfig KERNELRELEASE=4.9.56-linaro-lt-qcom
   fi
   make -j$NTHREADS Image.gz dtbs KERNELRELEASE=4.9.56-linaro-lt-qcom $1
   dtbTool -o $OSP_BUILD/dt.img -s 2048 arch/arm64/boot/dts/qcom/
@@ -31,7 +31,7 @@ buildKernel() {
             --pagesize 2048 \
             --base 0x80000000 \
             --cmdline "root=/dev/disk/by-partlabel/rootfs rw rootwait console=ttyMSM0,115200n8"
-  
+
   popd &> /dev/null
   echo 'Done!'
 }
