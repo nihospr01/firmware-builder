@@ -36,3 +36,5 @@ On the host system goto `ospboard/opt/osp/var/build` directory and execute the c
 sudo fastboot flash boot boot-carrier.img
 sudo fastboot reboot
 ```
+
+# [Notes for Installing Docker](https://bitbucket.org/openspeechplatform/ospboard/wiki/Installing%20Docker)
