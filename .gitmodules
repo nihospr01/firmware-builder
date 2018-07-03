@@ -5,3 +5,6 @@
 [submodule "opt/osp/src/kernel"]
 	path = opt/osp/src/kernel
 	url = https://bitbucket.org/openspeechplatform/kernel.git
+[submodule "opt/osp/src/osp-process"]
+	path = opt/osp/src/osp-process
+	url = https://bitbucket.org/openspeechplatform/osp-clion.git
