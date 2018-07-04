@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir -p $PWD/opt/osp/var/build
+
 OS=$(uname)
 docker &> /dev/null
 NEED_DOCKER=$?
@@ -17,6 +19,6 @@ then
 fi
 
 docker build -t osp-builder .
-docker create -it -v $PWD/opt:/opt --name osp-builder -h osp-builder osp-builder
+docker create -it -v $PWD/opt:/opt --privileged  --name osp-builder -h osp-builder osp-builder
 
 exit 0
