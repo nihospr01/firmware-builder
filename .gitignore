@@ -1,5 +1,7 @@
 # Project Specific
 opt/osp/var/
+opt/osp/rootfs/
+opt/osp/share/rootfs.img
 
 #
 # Object files

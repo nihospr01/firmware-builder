@@ -2,6 +2,7 @@
 OSP_ROOT=/opt/osp
 OSP_BUILD=$OSP_ROOT/var/build
 KERNEL_DIR=$OSP_ROOT/src/kernel
+OSP_PROCESS=$OSP_ROOT/src/osp_process
 
 mkdir -p $OSP_BUILD
 
@@ -36,15 +37,31 @@ buildKernel() {
   echo 'Done!'
 }
 
-flashImage() {
-    sudo fastboot flash boot $OSP_BUILD/boot-carrier.img
-    sudo fastboot reboot
+buildOSP() {
+
+  if [ ! -f /opt/osp/share/rootfs.img ]; then
+    pushd /opt/osp/share
+    simg2img rootfs.simg rootfs.img
+    popd
+  fi
+  mount -o /opt/osp/share/rootfs.img /opt/osp/rootfs
+
+  pushd $OSP_BUILD
+  cmake -DCMAKE_TOOLCHAIN_FILE=/opt/osp/src/CMakeToolchain /opt/osp/src/osp-process
+  make
+  cp osp_clion /opt/osp/rootfs/usr/local/bin/osp_process
+  popd
+
+  umount /opt/osp/rootfs
+  pushd /opt/osp/share
+  img2simg rootfs.img rootfs.simg
+  popd
 }
 
 buildHelp() {
     echo 'Available Commands:'
     echo '  buildKernel -- builds the kernel and creates image'
-    echo '  flashImage  -- flashes the image to the board, sudo required'
+    echo '  buildOSP    -- builds OSP process and installs in rootfs image'
     echo '  buildHelp   -- print this help summary'
 }
 
