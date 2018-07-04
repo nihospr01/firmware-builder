@@ -32,7 +32,9 @@ RUN apt update && apt install -y \
   cmake \
   cmake-doc \
   ninja-build \
-  lrzip
+  lrzip \
+  simg2img \
+  img2simg
 
 ADD osp.sh /etc/profile.d/
 
