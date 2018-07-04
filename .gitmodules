@@ -8,6 +8,3 @@
 [submodule "opt/osp/src/osp-process"]
 	path = opt/osp/src/osp-process
 	url = https://bitbucket.org/openspeechplatform/osp-clion.git
-[submodule "opt/osp/src/portaudio"]
-	path = opt/osp/src/portaudio
-	url = https://git.assembla.com/portaudio.git
