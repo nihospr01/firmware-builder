@@ -1,7 +1,3 @@
-[submodule "opt/skales"]
-	path = opt/skales
-	url = git://codeaurora.org/quic/kernel/skales
-	branch = master
 [submodule "opt/osp/src/kernel"]
 	path = opt/osp/src/kernel
 	url = https://bitbucket.org/openspeechplatform/kernel.git

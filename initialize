@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-mkdir -p $PWD/opt/osp/var/build
+docker ps -a | grep osp-builder &>/dev/null && docker rm osp-builder &> /dev/null
+docker images | grep osp-builder &>/dev/null && docker rmi osp-builder &> /dev/null
+
+mkdir -p opt/osp/var/build
+ln -sf /opt/osp/share/rootfs.simg opt/osp/var/build/rootfs.simg
 
 OS=$(uname)
 docker &> /dev/null
@@ -11,14 +15,14 @@ then
   if [ $OS = "Darwin" ]
   then
     open https://store.docker.com/editions/community/docker-ce-desktop-mac
-    read -p "Install Docker for Mac and then press any key once installed and running..." -n1 -s && echo
+    read -p "Install Docker for Mac and then press any key once installed and running." -n1 -s && echo
   else
-    echo "Install Docker and then run this script."
-    exit -1
+    echo "Install Docker and then press any key once installed and running."
+    read -p "See the README file for link to help on this" -n1 -s && echo
   fi
 fi
 
 docker build -t osp-builder .
-docker create -it -v $PWD/opt:/opt --privileged  --name osp-builder -h osp-builder osp-builder
+docker create -it -v $PWD/opt:/opt:rshared --privileged  --name osp-builder -h osp-builder osp-builder
 
 exit 0
