@@ -23,6 +23,6 @@ then
 fi
 
 docker build -t osp-builder .
-docker create -it -v $PWD/opt:/opt:rshared --privileged  --name osp-builder -h osp-builder osp-builder
+docker create -it -v $PWD/opt:/opt --privileged  --name osp-builder -h osp-builder osp-builder
 
 exit 0
