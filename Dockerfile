@@ -3,7 +3,7 @@ FROM ubuntu
 ENV TERM=xterm-256color
 
 # Install Ruby and Rails dependencies
-RUN apt update && apt install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
   apt-utils \
   build-essential \
   crossbuild-essential-arm64 \
@@ -34,9 +34,11 @@ RUN apt update && apt install -y \
   ninja-build \
   lrzip \
   simg2img \
-  img2simg
+  img2simg \
+  initramfs-tools \
+  android-tools-mkbootimg
 
-ADD osp.sh /etc/profile.d/
+RUN echo '[ -r /opt/osp/share/scripts/osp.sh ] && source /opt/osp/share/scripts/osp.sh' > /etc/profile.d/ospenv.sh
 
 WORKDIR /opt/osp/var/build
 

@@ -2,6 +2,8 @@
 
 ## Get Repositories
 
+⚠️ Install Git LFS before continuing
+
 ```bash
 git clone --recurse-submodules git@bitbucket.org:openspeechplatform/ospboard.git
 ```
@@ -37,4 +39,5 @@ sudo fastboot flash boot boot-carrier.img
 sudo fastboot reboot
 ```
 
+# [Notes for Installing Git LFS](https://git-lfs.github.com)
 # [Notes for Installing Docker](https://bitbucket.org/openspeechplatform/ospboard/wiki/Installing%20Docker)
