@@ -4,3 +4,6 @@
 [submodule "opt/osp/src/osp-process"]
 	path = opt/osp/src/osp-process
 	url = https://bitbucket.org/openspeechplatform/osp-clion.git
+[submodule "libosp"]
+	path = opt/osp/src/libosp
+	url = git@bitbucket.org:openspeechplatform/libosp.git
