@@ -2,9 +2,10 @@
 OSP_ROOT=/opt/osp
 OSP_BUILD=$OSP_ROOT/var/build
 KERNEL_DIR=$OSP_ROOT/src/kernel
+KERNEL_MAKE_V=2
 OSP_PROCESS=$OSP_ROOT/src/osp_process
 ROOTFS_DIR=$OSP_ROOT/rootfs
-REDIRECT=/dev/null
+REDIRECT=/dev/stderr
 
 mkdir -p $OSP_BUILD
 
@@ -43,13 +44,13 @@ buildKernel() {
   echo "Linux Kernel Build Tasks:"
   pushd $KERNEL_DIR &>> $REDIRECT
   if ! [ -f .config ]; then
-      make ospboard_defconfig KERNELRELEASE=4.14.15-qcomlt-arm64 &>> $REDIRECT
+      make ospboard_defconfig KERNELRELEASE=4.14.15-qcomlt-arm64 V=$KERNEL_MAKE_V &>> $REDIRECT
     fi
   printf "  Building executable, dtbs, and modules... "
-  make -j$NTHREADS Image.gz dtbs modules KERNELRELEASE=4.14.15-qcomlt-arm64 &>> $REDIRECT
+  make -j$NTHREADS Image.gz dtbs modules KERNELRELEASE=4.14.15-qcomlt-arm64 V=$KERNEL_MAKE_V &>> $REDIRECT
   printf "DONE\n"
   printf "  Installing modules....................... "
-  make modules_install KERNELRELEASE=4.14.15-qcomlt-arm64 INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=$ROOTFS_DIR &>> $REDIRECT
+  make modules_install KERNELRELEASE=4.14.15-qcomlt-arm64 INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=$ROOTFS_DIR V=$KERNEL_MAKE_V &>> $REDIRECT
   printf "DONE\n"
   printf "  Building boot image...................... "
   cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/apq8016-sbc.dtb > $OSP_BUILD/Image.gz+dtb
@@ -96,10 +97,13 @@ buildLK() {
 setOutput() {
   if [ "$1" = "verbose" ]; then
     REDIRECT=/dev/stderr
+		KERNEL_MAKE_V=2
   elif [ "$1" = "quiet" ]; then
     REDIRECT=/dev/null
+		KERNEL_MAKE_V=0
   elif [ "$1" = "log" ]; then
     REDIRECT=$OSP_BUILD/output.log
+		KERNEL_MAKE_V=1
   fi
 }
 
@@ -114,6 +118,14 @@ buildHelp() {
     echo '  buildHelp    -- print this help summary'
 }
 
+if ! [ -f /usr/local/bash-git-prompt/gitprompt.sh ]; then
+	pushd /usr/local &> /dev/null
+	git clone --branch=2.7.1 https://github.com/magicmonty/bash-git-prompt.git &> /dev/null
+	popd &> /dev/null
+fi
+source /usr/local/bash-git-prompt/gitprompt.sh
+
+complete -W "quiet verbose log" setOutput
 buildHelp
 
 # vim: set filetype=sh tabstop=2 shiftwidth=2 softtabstop=2 expandtab :
