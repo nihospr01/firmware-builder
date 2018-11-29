@@ -36,7 +36,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
   simg2img \
   img2simg \
   initramfs-tools \
-  android-tools-mkbootimg
+  android-tools-mkbootimg \
+  ccache \
+  distcc
 
 RUN echo '[ -r /opt/osp/share/scripts/osp.sh ] && source /opt/osp/share/scripts/osp.sh' > /etc/profile.d/ospenv.sh
 

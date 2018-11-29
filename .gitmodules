@@ -7,3 +7,6 @@
 [submodule "libosp"]
 	path = opt/osp/src/libosp
 	url = git@bitbucket.org:openspeechplatform/libosp.git
+[submodule "opt/osp/src/db-boot-tools"]
+	path = opt/osp/src/db-boot-tools
+	url = https://git.linaro.org/landing-teams/working/qualcomm/db-boot-tools.git
