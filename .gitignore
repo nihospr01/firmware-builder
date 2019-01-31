@@ -2,6 +2,7 @@
 opt/osp/var/
 opt/osp/rootfs/
 opt/osp/share/rootfs.img
+opt/osp/share/rootfs.simg
 
 #
 # Object files
