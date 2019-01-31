@@ -9,6 +9,6 @@ apt update
 apt upgrade -y
 apt autoremove --purge -y && apt clean
 apt autoclean
-apt install -y alsa-tools alsa-utils autoconf automake cmake bash-completion libpoco-dev libtool nasm php php-mbstring php-xml screen
+apt install -y alsa-tools alsa-utils autoconf automake cmake bash-completion screen
 apt autoremove --purge -y && apt clean
 

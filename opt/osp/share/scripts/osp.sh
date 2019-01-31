@@ -4,7 +4,7 @@ OSP_BUILD=$OSP_ROOT/var/build
 KERNEL_DIR=$OSP_ROOT/src/kernel
 OSP_PROCESS=$OSP_ROOT/src/osp_process
 ROOTFS_DIR=$OSP_ROOT/rootfs
-REDIRECT=/dev/null
+REDIRECT=/dev/stderr
 
 mkdir -p $OSP_BUILD
 
