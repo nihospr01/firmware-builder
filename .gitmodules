@@ -2,5 +2,5 @@
 	path = opt/osp/src/kernel
 	url = https://bitbucket.org/openspeechplatform/kernel.git
 [submodule "opt/osp/src/db-boot-tools"]
-	path = opt/osp/src/db-boot-tools
+	path = opt/osp/share/db-boot-tools
 	url = https://git.linaro.org/landing-teams/working/qualcomm/db-boot-tools.git
