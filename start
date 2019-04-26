@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docker start -i osp-old-builder
+docker start -i osp-builder
 
 exit 0
