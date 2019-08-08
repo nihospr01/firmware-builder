@@ -5,10 +5,10 @@ pipelines:
     - step:
         name: Build Kernel
         script: # Modify the commands below to build your repository.
-          - ARCH=arm64
-            export ARCH
-            CROSS_COMPILE="aarch64-linux-gnu-"
-            export CROSS_COMPILE
-            cd opt/osp/src/kernel
-            make ospboard_defconfig KERNELRELEASE=4.14.0-qcomlt-arm64
+          - ARCH=arm64;
+            export ARCH;
+            CROSS_COMPILE="aarch64-linux-gnu-";
+            export CROSS_COMPILE;
+            cd opt/osp/src/kernel;
+            make ospboard_defconfig KERNELRELEASE=4.14.0-qcomlt-arm64;
             make Image.gz modules dtbs KERNELRELEASE=4.14.0-qcomlt-arm64
