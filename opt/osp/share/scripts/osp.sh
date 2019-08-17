@@ -82,7 +82,7 @@ buildKernel() {
             --output $OSP_BUILD/boot.img \
             --pagesize 2048 \
             --base 0x80000000 \
-            --cmdline "root=/dev/disk/by-partlabel/rootfs rw rootwait console=ttyMSM0,115200n8"
+            --cmdline "root=/dev/mmcblk0p10 rw rootwait console=ttyMSM0,115200n8"
   rm -f $OSP_BUILD/Image.gz+dtb &>> /dev/null
   cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/ospboardv7.dtb > $OSP_BUILD/Image.gz+dtb
   mkbootimg --kernel $OSP_BUILD/Image.gz+dtb \
@@ -90,7 +90,7 @@ buildKernel() {
             --output $OSP_BUILD/boot-v7.img \
             --pagesize 2048 \
             --base 0x80000000 \
-            --cmdline "root=/dev/disk/by-partlabel/rootfs rw rootwait console=ttyMSM0,115200n8"
+            --cmdline "root=/dev/mmcblk0p10 rw rootwait console=ttyMSM0,115200n8"
   rm -f $OSP_BUILD/Image.gz+dtb &>> /dev/null
   printf "DONE\n"
 
