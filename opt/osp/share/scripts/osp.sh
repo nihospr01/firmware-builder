@@ -61,19 +61,19 @@ buildKernel() {
   echo "Linux Kernel Build Tasks:"
   pushd $KERNEL_DIR &>> /dev/null
   if ! [ -f .config ]; then
-      make ospboard_defconfig KERNELRELEASE=4.14.0-qcomlt-arm64 V=$KERNEL_MAKE_V &>> $REDIRECT
+      make ospboard_defconfig V=$KERNEL_MAKE_V &>> $REDIRECT
   fi
   printf "  Building Image.gz......................... "
-  make -j$NTHREADS Image.gz KERNELRELEASE=4.14.0-qcomlt-arm64 V=$KERNEL_MAKE_V &>> $REDIRECT
+  make -j$NTHREADS Image.gz V=$KERNEL_MAKE_V &>> $REDIRECT
   printf "DONE\n"
   printf "  Building modules.......................... "
-  make -j$NTHREADS modules KERNELRELEASE=4.14.0-qcomlt-arm64 V=$KERNEL_MAKE_V &>> $REDIRECT
+  make -j$NTHREADS modules V=$KERNEL_MAKE_V &>> $REDIRECT
   printf "DONE\n"
   printf "  Building dtbs............................. "
-  make -j$NTHREADS dtbs KERNELRELEASE=4.14.0-qcomlt-arm64 V=$KERNEL_MAKE_V &>> $REDIRECT
+  make -j$NTHREADS dtbs V=$KERNEL_MAKE_V &>> $REDIRECT
   printf "DONE\n"
   printf "  Installing modules....................... "
-  make modules_install KERNELRELEASE=4.14.0-qcomlt-arm64 INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=$ROOTFS_DIR V=$KERNEL_MAKE_V &>> $REDIRECT
+  make modules_install INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=$ROOTFS_DIR V=$KERNEL_MAKE_V &>> $REDIRECT
   printf "DONE\n"
   printf "  Building boot images..................... "
   cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/apq8016-sbc.dtb > $OSP_BUILD/Image.gz+dtb
@@ -95,10 +95,6 @@ buildKernel() {
   printf "DONE\n"
 
   popd &>> /dev/null
-
-  if [ -z "$1" ] || [ "$1" != "skip" ]; then
-    updateRootfs "  "
-  fi
 }
 
 buildLK() {
